@@ -39,27 +39,29 @@ import java.util.Map;
 class OwnerController {
 
 	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
-    private final OwnerRepository owners;
-    private PetRepository petRepository;
 
-    @Autowired
-    public void setPetRepository(PetRepository petRepository) {
-        this.petRepository = petRepository;
-    }
+	private final OwnerRepository owners;
 
-    // 생성자를 사용하는 방법이 좋은 이유
-    // 필수적으로 사용해야 하는 레퍼런스 없이는 이 인스턴스를 만들지 못하도록 강제
-    // 한마디로 OwnerController는 OwnerRepository가 없으면 제대로 동작할 수 없다.!!
-    // 단 순환의존이 될 경우는 생성자 인젝션 좋지 않음.
-    public OwnerController(OwnerRepository clinicService) {
-        this.owners = clinicService;
-    }
+	private PetRepository petRepository;
+
+	@Autowired
+	public void setPetRepository(PetRepository petRepository) {
+		this.petRepository = petRepository;
+	}
+
+	// 생성자를 사용하는 방법이 좋은 이유
+	// 필수적으로 사용해야 하는 레퍼런스 없이는 이 인스턴스를 만들지 못하도록 강제
+	// 한마디로 OwnerController는 OwnerRepository가 없으면 제대로 동작할 수 없다.!!
+	// 단 순환의존이 될 경우는 생성자 인젝션 좋지 않음.
+	public OwnerController(OwnerRepository clinicService) {
+		this.owners = clinicService;
+	}
 
 	// 3. Setter를 활용
-    //	@Autowired
-    //	public void setOwners(OwnerRepository owners) {
-    //		this.owners = owners;
-    //	}
+	// @Autowired
+	// public void setOwners(OwnerRepository owners) {
+	// this.owners = owners;
+	// }
 
 	// 2. 필드로 의존성을 주입받는 방법
 	// @Autowired
